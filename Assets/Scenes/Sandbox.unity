@@ -426,6 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 0
   spawnPoint: {fileID: 2115955903}
+  destination: 1
 --- !u!4 &2025559321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3710637759854772296, guid: 34ae6d4fb398b924fa6927f39e4a1f83, type: 3}
