@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3580636613925996558}
   m_Layer: 0
-  m_Name: Weapon Prefab
+  m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
