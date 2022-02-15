@@ -317,6 +317,10 @@ PrefabInstance:
       value: Player Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7264987850120495426, guid: 34ae6d4fb398b924fa6927f39e4a1f83, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 805a1d42d2c47274681c965fed10eff3, type: 2}
+    - target: {fileID: 7264987850120495426, guid: 34ae6d4fb398b924fa6927f39e4a1f83, type: 3}
       propertyPath: weaponPrefab
       value: 
       objectReference: {fileID: 3580636613925996545, guid: 5f71f24f7eb77f547bcde0b785112f7b, type: 3}
