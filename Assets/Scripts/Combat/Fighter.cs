@@ -1,3 +1,4 @@
+using System;
 using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
@@ -9,8 +10,15 @@ namespace RPG.Combat
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float weaponDamage = 5f;
+        [SerializeField] GameObject weaponPrefab = null;
+        [SerializeField] Transform handTransfrom = null;
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
+
+        private void Start()
+        {
+            SpawnWeapon();            
+        }
 
         void Update()
         {
@@ -28,6 +36,31 @@ namespace RPG.Combat
                 GetComponent<Mover>().Cancel();
                 AttackBehaviour();
             }
+        }
+
+        public bool CanAttack(GameObject combatTarget)
+        {
+            if (combatTarget == null) { return false; }
+            Health targetToTest = combatTarget.GetComponent<Health>();
+            return targetToTest != null && !targetToTest.IsDead();
+        }
+
+        public void Attack(GameObject combatTarget)
+        {   
+            GetComponent<ActionScheduler>().StartAction(this);
+            target = combatTarget.GetComponent<Health>(); 
+        }
+
+        public void Cancel()
+        {
+            StopAttack();
+            target = null;
+            GetComponent<Mover>().Cancel();
+        }
+
+        private void SpawnWeapon()
+        {
+            Instantiate(weaponPrefab, handTransfrom);
         }
 
         private void AttackBehaviour()
@@ -54,25 +87,6 @@ namespace RPG.Combat
             target.TakeDamage(weaponDamage);
         }
 
-        public bool CanAttack(GameObject combatTarget)
-        {
-            if (combatTarget == null) { return false; }
-            Health targetToTest = combatTarget.GetComponent<Health>();
-            return targetToTest != null && !targetToTest.IsDead();
-        }
-
-        public void Attack(GameObject combatTarget)
-        {   
-            GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.GetComponent<Health>(); 
-        }
-
-        public void Cancel()
-        {
-            StopAttack();
-            target = null;
-            GetComponent<Mover>().Cancel();
-        }
 
         private void StopAttack()
         {
